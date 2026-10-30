@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#081E21" />
+    <script>
+      // Suppress benign preview WebSocket disconnection logs
+      window.addEventListener('unhandledrejection', function(event) {
+        if (event.reason && (String(event.reason.message || event.reason).includes('WebSocket') || String(event.reason.message || event.reason).includes('websocket'))) {
+          event.preventDefault();
+        }
+      });
+    </script>
+    <title>ICS Academy Manhappatta — Unified Digital Campus</title>
+    <meta
+      name="description"
+      content="A unified digital campus for ICS Academy Manhappatta. Students, class leaders, teachers and the principal sign in to one secure portal."
+    />
+    <meta property="og:title" content="ICS Academy Manhappatta — Unified Digital Campus" />
+    <meta
+      property="og:description"
+      content="A unified digital campus for ICS Academy Manhappatta. Students, class leaders, teachers and the principal sign in to one secure portal."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/images/ics-mark-transparent.png" />
+    <link rel="apple-touch-icon" href="/images/ics-mark-transparent.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ICS Academy" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Noto+Serif+Malayalam:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Tajawal:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="antialiased">
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').catch(function(err) {
+            console.warn('SW registration failed:', err);
+          });
+        });
+      }
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
